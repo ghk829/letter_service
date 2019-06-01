@@ -7,10 +7,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '''<form method=POST enctype=multipart/form-data action="register">
-    <input name="say" value="Hi">
-    <input name="to" value="Mom">
-    <input type=file name=myfile>
+    return '''<form method=POST enctype=multipart/form-data action="sendmessage">
+    <input name="target" value="아빠에게"> <br>
+    <input name="message" value="아빠 사랑해요"> <br>
+    <input type=file name=myfile> <br>
     <input type=submit>
     </form>'''
 
