@@ -11,3 +11,6 @@ class Message:
             setattr(self,k,v)
         import datetime
         self.date = datetime.datetime.now()
+
+    def set(self,key,value):
+        setattr(self,key,value)

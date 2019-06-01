@@ -8,7 +8,7 @@ class S3Client:
         self.REGION_NAME = kwargs.get("region_name","ap-northeast-2")
         self.request = kwargs.get("request")
 
-    def upload_file(self):
+    def upload_file(self,formname):
         try:
             from boto3.session import Session
             session = Session(aws_access_key_id=self.ACCESS_KEY_ID,
@@ -16,13 +16,13 @@ class S3Client:
             s3 = session.resource("s3")
             bucket = s3.Bucket(self.BUCKET_NAME)
 
-            filename = request.files['myfile'].filename
+            filename = request.files[formname].filename
 
             """
             key 명명 규칙은 source/target/filename
             """
 
-            bucket.put_object(Key=filename, Body=request.files['myfile'])
+            bucket.put_object(Key=filename, Body=request.files[formname])
 
         except Exception as e:
             print(e)

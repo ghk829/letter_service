@@ -8,5 +8,8 @@ class User:
         for k,v in kwargs:
             setattr(self,k,v)
 
+    def set(self,key,value):
+        setattr(self,key,value)
+
     def add_message(self,message):
         self.messages.append(message)

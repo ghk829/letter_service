@@ -20,7 +20,13 @@ def register():
     return '<h1>File saved to S3</h1>'
 
 
-@app.route('/register', methods=['POST'])
+@app.route('/sendmessage', methods=['POST'])
+def register():
+    s3_client = S3Client(request=request)
+    s3_client.upload_file("myfile")
+    return '<h1>File saved to S3</h1>'
+
+@app.route('/viewmessage', methods=['GET'])
 def register():
     s3_client = S3Client(request=request)
     s3_client.upload_file()
