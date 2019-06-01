@@ -1,3 +1,4 @@
+from flask import request
 class S3Client:
 
     def __init__(self,**kwargs):
@@ -15,13 +16,13 @@ class S3Client:
             s3 = session.resource("s3")
             bucket = s3.Bucket(self.BUCKET_NAME)
 
-            filename = ""
+            filename = request.files['myfile'].filename
 
             """
             key 명명 규칙은 source/target/filename
             """
 
-            bucket.put_object(Key=filename, Body="testtest")
+            bucket.put_object(Key=filename, Body=request.files['myfile'])
 
         except Exception as e:
             print(e)
