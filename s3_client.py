@@ -22,7 +22,10 @@ class S3Client:
             key 명명 규칙은 source/target/filename
             """
 
-            bucket.put_object(Key=filename, Body=request.files[formname])
-
+            s3_object = bucket.put_object(Key=filename, Body=request.files[formname])
+            end_point = s3_object.meta.client._endpoint.host[s3_object.meta.client._endpoint.host.find("s3"):]
+            s3_url = f"htts://{self.BUCKET_NAME}.{end_point}/{filename}"
+            print(s3_url)
+            return s3_url
         except Exception as e:
             print(e)

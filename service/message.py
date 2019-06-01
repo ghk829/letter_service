@@ -10,14 +10,19 @@ class Message:
     def send(self):
         from collection.message import Message
         from flask import request
-        json = request.get_json()
-        message = Message(json)
+
+        message = Message(**request.form)
 
         s3_client = S3Client(request=request)
-        form_name = next(request.files.keys())
-        if form_name:
-            s3_client.upload_file(form_name)
-        MongoClient().insert_one(message)
+        try:
+            form_name = next(request.files.keys())
+            s3_url = s3_client.upload_file(form_name)
+            message.set("url",s3_url)
+        except StopIteration as e:
+            print(e)
+        finally:
+            MongoClient().insert_one(message)
+
 
 
     def recv(self):

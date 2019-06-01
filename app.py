@@ -3,7 +3,12 @@ import boto3
 from constant import *
 from s3_client import S3Client
 from db_client import MongoClient
+from flask_cors import CORS
 app = Flask(__name__)
+cors = CORS(app, resources={
+  r"/register/*": {"origin": "*"},
+  r"/sendmessage/*": {"origin": "*"},
+})
 
 @app.route('/')
 def index():
@@ -12,7 +17,17 @@ def index():
     <input name="message" value="아빠 사랑해요"> <br>
     <input type=file name=myfile> <br>
     <input type=submit>
-    </form>'''
+    </form>
+    
+    <form method=POST enctype=multipart/form-data action="sendmessage">
+    <input name="target" value="아빠에게"> <br>
+    <input name="message" value="아빠 사랑해요"> <br>
+    <input type=file name=myfile> <br>
+    <input type=submit>
+    </form>
+    
+    
+    '''
 
 @app.route('/register', methods=['POST'])
 def register():
