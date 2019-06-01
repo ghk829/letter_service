@@ -8,7 +8,7 @@ class Register:
     def get_user(self):
         from collection.user import User
         from flask import request
-        json = request.form
+        json = request.get_json()
         user = User(**json)
         self.user = user
 
