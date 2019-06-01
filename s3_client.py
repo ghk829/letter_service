@@ -15,13 +15,13 @@ class S3Client:
             s3 = session.resource("s3")
             bucket = s3.Bucket(self.BUCKET_NAME)
 
-            filename = ""
+            filename = "test.txt"
 
             """
             key 명명 규칙은 source/target/filename
             """
 
-            bucket.put_object(Key=filename, Body=self.request.files)
+            bucket.put_object(Key=filename, Body="testtest")
 
         except Exception as e:
             print(e)
