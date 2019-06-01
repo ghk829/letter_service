@@ -4,6 +4,7 @@ class S3Client:
         self.ACCESS_KEY_ID = kwargs.get("access_key_id","AKIA2UVP3YJ46MD3BZ2Z")
         self.ACCESS_KEY_PASSWD = kwargs.get("access_key_passwd", "rT8PBBDw32ASlGkAKq1j96I5dLy7I981Jl8ahffE")
         self.BUCKET_NAME = kwargs.get("bucket_name", "glassletter")
+        self.REGION_NAME = kwargs.get("region_name","ap-northeast-2")
         self.request = kwargs.get("request")
 
     def upload_file(self):
