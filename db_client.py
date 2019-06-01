@@ -17,8 +17,23 @@ class MongoClient:
     def create(self):
         pass
 
-    def retrive(self):
-        pass
+    def retrive(self,query):
+        result = []
+        cursor = self.conn.find(query)
+
+        try:
+            while True:
+                tmp = cursor.next()
+                tmp.pop("_id")
+                result.append(tmp)
+
+        except StopIteration as e:
+            print(e)
+
+        finally:
+            return result
+
+
 
     def insert_one(self,data):
         if hasattr(data,"__dict__"):
@@ -29,3 +44,9 @@ class MongoClient:
 
     def delete(self):
         pass
+
+if __name__ == '__main__':
+    conn = MongoClient(collection="message")
+    result = conn.retrive({})
+    print(result)
+    print(len(result))

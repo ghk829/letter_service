@@ -10,9 +10,10 @@ class Message:
     def send(self):
         from collection.message import Message
         from flask import request
-
-        message = Message(**request.form)
-
+        if request.content_type.startswith("application/json"):
+            message = Message(**request.get_json())
+        else:
+            message = Message(**request.form)
         s3_client = S3Client(request=request)
         try:
             form_name = next(request.files.keys())
@@ -21,9 +22,14 @@ class Message:
         except StopIteration as e:
             print(e)
         finally:
-            MongoClient().insert_one(message)
-
+            MongoClient(collection="message").insert_one(message)
+            user = next(MongoClient(collection="user").retrive({"user_id":message.source}))
+            user.add_message(message)
+            MongoClient(collection="user").update_one({"user_id":message.source},
+                                                      {"$set": {"messages": user.messages}})
 
 
     def recv(self):
-        pass
+        from flask import request
+        source = request.args.get("source")
+        return MongoClient(collection="message").retrive({"source":source})

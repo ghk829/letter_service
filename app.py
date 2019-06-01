@@ -49,10 +49,21 @@ def sendmessage():
 
 @app.route('/viewmessage', methods=['GET'])
 def viewmessage():
-    s3_client = S3Client(request=request)
-    s3_client.upload_file()
-    return ""
+    from service.message import Message
+    service = Message()
+    result = service.recv()
+    import json
+    return json.dumps(result,ensure_ascii=False)
 
+
+@app.route('/updatemessage', methods=['POST'])
+def updatemessage():
+    pass
+
+
+@app.route('/deletemessage', methods=['DELETE'])
+def deletemessage():
+    pass
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True)

@@ -9,6 +9,7 @@ class Message:
     def __init__(self,**kwargs):
         for k,v in kwargs.items():
             setattr(self,k,v)
+
         import datetime
         self.date = datetime.datetime.now()
 

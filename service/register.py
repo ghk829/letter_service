@@ -16,5 +16,5 @@ class Register:
 
         if hasattr(self,"user"):
             from db_client import MongoClient
-            client = MongoClient()
+            client = MongoClient(collection="user")
             client.insert_one(self.user)
