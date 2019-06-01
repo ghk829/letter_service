@@ -1,6 +1,7 @@
 class User:
     user_id = ""
     user_name = ""
+    phone = ""
     password = ""
     messages = []
 
