@@ -5,7 +5,7 @@ class User:
     messages = []
 
     def __init__(self,**kwargs):
-        for k,v in kwargs:
+        for k,v in  kwargs.items():
             setattr(self,k,v)
 
     def set(self,key,value):

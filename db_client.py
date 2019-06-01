@@ -20,8 +20,12 @@ class MongoClient:
     def retrive(self):
         pass
 
-    def insert(self,data):
-        self.conn.insert_one(data).inserted_id
+    def insert_one(self,data):
+        if hasattr(data,"__dict__"):
+            result_id = self.conn.insert_one(data.__dict__).inserted_id
+        elif type(data) == dict:
+            result_id = self.conn.insert_one(data).inserted_id
+        print(result_id)
 
     def delete(self):
         pass
