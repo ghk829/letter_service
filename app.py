@@ -19,5 +19,13 @@ def register():
     s3_client.upload_file()
     return '<h1>File saved to S3</h1>'
 
+
+@app.route('/register', methods=['POST'])
+def register():
+    s3_client = S3Client(request=request)
+    s3_client.upload_file()
+    return '<h1>File saved to S3</h1>'
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True)
