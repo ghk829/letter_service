@@ -6,8 +6,7 @@ from db_client import MongoClient
 from flask_cors import CORS
 app = Flask(__name__)
 cors = CORS(app, resources={
-  r"/register/*": {"origin": "*"},
-  r"/sendmessage/*": {"origin": "*"},
+  r"/*": {"origin": "*"}
 })
 
 @app.route('/')
@@ -52,6 +51,8 @@ def viewmessage():
     from service.message import Message
     service = Message()
     result = service.recv()
+    for rst in result:
+        rst['date'] = str(rst['date'])
     import json
     return json.dumps(result,ensure_ascii=False)
 

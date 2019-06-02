@@ -9,8 +9,9 @@ class Register:
         from collection.user import User
         from flask import request
         json = request.get_json()
-        user = User(**json)
-        self.user = user
+        if json:
+            user = User(**json)
+            self.user = user
 
     def insert_one(self):
 
@@ -18,3 +19,9 @@ class Register:
             from db_client import MongoClient
             client = MongoClient(collection="user")
             client.insert_one(self.user)
+
+
+    def insert_after(self,user_obj):
+        from db_client import MongoClient
+        client = MongoClient(collection="user")
+        client.insert_one(user_obj)

@@ -33,15 +33,16 @@ class MongoClient:
         finally:
             return result
 
-
+    def update(self,filter,update_query):
+        self.conn.update_one(filter=filter,update=update_query)
 
     def insert_one(self,data):
         if hasattr(data,"__dict__"):
-            result_id = self.conn.insert_one(data.__dict__).inserted_id
+            object_id = self.conn.insert_one(data.__dict__).inserted_id
         elif type(data) == dict:
             result_id = self.conn.insert_one(data).inserted_id
-        print(result_id)
-
+        print(object_id)
+        return str(object_id)
     def delete(self):
         pass
 
