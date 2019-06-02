@@ -17,7 +17,7 @@ class S3Client:
             bucket = s3.Bucket(self.BUCKET_NAME)
 
             filename = "{source}/{target}/{base_file}".format(source=self.request.form['source'],
-                                                             target=self.request.form['target'],
+                                                             target=list(self.request.form['target'].values()).pop(0),
                                                              base_file=self.request.files[form_name].filename)
 
             """
