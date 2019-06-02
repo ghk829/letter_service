@@ -12,8 +12,9 @@ cors = CORS(app, resources={
 @app.route('/')
 def index():
     return '''<form method=POST enctype=multipart/form-data action="sendmessage">
-    <input name="target" value="아빠에게"> <br>
-    <input name="message" value="아빠 사랑해요"> <br>
+     <input name="source" value="tester"> <br>
+    <input name="target" value="01029209599"> <br>
+    <input name="text" value="아빠 사랑해요"> <br>
     <input type=file name=myfile> <br>
     <input type=submit>
     </form>

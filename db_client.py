@@ -37,6 +37,7 @@ class MongoClient:
     def update(self,filter,update_query):
         object_id = self.conn.update_one(filter=filter,update=update_query)
         return str(object_id)
+
     def insert_one(self,data):
         if hasattr(data,"__dict__"):
             object_id = self.conn.insert_one(data.__dict__).inserted_id
@@ -44,6 +45,7 @@ class MongoClient:
             result_id = self.conn.insert_one(data).inserted_id
         print(object_id)
         return str(object_id)
+
     def delete(self,filter):
         try:
             self.conn.delete_one(filter)

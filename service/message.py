@@ -19,6 +19,7 @@ class Message:
             form_name = next(request.files.keys())
             s3_url = s3_client.upload_file(form_name)
             message.set("url",s3_url)
+            message.set("type",request.files[form_name].content_type)
         except StopIteration as e:
             print(e)
         finally:
