@@ -10,15 +10,19 @@ def send_sms(text):
     API_SECRET = "96731ee77ea24d69921701a9fb589a23"
     headers = {"Content-Type":"application/json; charset=utf-8","x-ncp-auth-key":API_KEY,"x-ncp-service-secret":API_SECRET}
     data = {
-    "type":"SMS",
+    "type":"LMS",
     "contentType":"COMM",
     "countryCode":"82",
     "from":"01029209599",
     "to":[
         "01066474058"
     ],
-    "subject":"",
-    "content":""
+    "subject":"GlassWill 유서편지서비스",
+    "content":"유서편지서비스"
+              "\n"
+              "GlassWill에서 박채현님이 작성한 편지가 도착했습니다"
+              "\n"
+              "http://www.glasswill.com?token=1iyu2u318dh21828"
     }
     import json
     data = json.dumps(data)
