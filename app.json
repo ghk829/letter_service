@@ -1,0 +1,22 @@
+{
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "name": "letter_service",
+  "scripts": {
+    "postdeploy": "bin/python app.py"
+  },
+  "stack": "heroku-18"
+}
