@@ -59,12 +59,16 @@ def viewmessage():
 
 @app.route('/updatemessage', methods=['POST'])
 def updatemessage():
-    pass
-
-
+    from service.message import Message
+    service = Message()
+    result = service.update()
+    return result
 @app.route('/deletemessage', methods=['DELETE'])
 def deletemessage():
-    pass
+    from service.message import Message
+    service = Message()
+    result = service.delete()
+    return result
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug=True)

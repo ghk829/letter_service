@@ -42,4 +42,28 @@ class Message:
     def recv(self):
         from flask import request
         source = request.args.get("user_id")
-        return MongoClient(collection="message").retrive({"source":source})
+        return MongoClient(collection="message").retrive({"source": source})
+
+
+    def update(self):
+        from collection.message import Message
+        from flask import request
+        json = request.get_json()
+        from bson.objectid import ObjectId
+        message_id = json['id']
+        message_id = ObjectId(message_id)
+        message = MongoClient(collection="message").retrive({"_id": message_id})
+        if "text" in json:
+            object_id = MongoClient(collection="message").update({"_id": message_id},
+                                              {"$set": {"text": json['text']}})
+        return object_id
+
+    def delete(self):
+        from collection.message import Message
+        from flask import request
+        json = request.get_json()
+        from bson.objectid import ObjectId
+        message_id = json['id']
+        message_id = ObjectId(message_id)
+        message = MongoClient(collection="message").delete({"_id": message_id})
+
