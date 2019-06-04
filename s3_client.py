@@ -2,8 +2,8 @@ from flask import request
 class S3Client:
 
     def __init__(self,**kwargs):
-        self.ACCESS_KEY_ID = kwargs.get("access_key_id","AKIAZQQLHJM3VYTL2LWR")
-        self.ACCESS_KEY_PASSWD = kwargs.get("access_key_passwd", "PMLUCrm67HGygjGEOqD0uFna14UlvXOOGTNOM5h1")
+        self.ACCESS_KEY_ID = kwargs.get("access_key_id","")
+        self.ACCESS_KEY_PASSWD = kwargs.get("access_key_passwd", "")
         self.BUCKET_NAME = kwargs.get("bucket_name", "glassletter")
         self.REGION_NAME = kwargs.get("region_name","ap-northeast-2")
         self.request = kwargs.get("request")
