@@ -3,8 +3,8 @@ class MongoClient:
 
     def __init__(self,**kwargs):
 
-        self.URL = kwargs.get("db_url","mongodb://colten:1q2w3e4r5t@ds231207.mlab.com:31207/heroku_21zzgr5h")
-        self.DATABASE = kwargs.get("database","heroku_21zzgr5h")
+        self.URL = kwargs.get("db_url","")
+        self.DATABASE = kwargs.get("database","")
         self.collection = kwargs.get("collection","test")
         self.conn = self.get_session()
 
